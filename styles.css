@@ -1,0 +1,79 @@
+body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    background: #222629;
+    font-family: 'Roboto', sans-serif;
+}
+
+header {
+    height: 15%;
+    margin: 0 auto;
+}
+
+.title {
+    display: flex;
+    align-items: center;
+    
+    justify-content: center;
+    margin: 0 auto;
+    height: 100%;
+}
+
+.title p {
+    margin: 0;
+    color: white;
+    font-size: 48px;
+    font-weight: 400;
+   
+}
+
+main {
+    height: 85%;
+    display: flex;
+}
+
+.nav-menu {
+    width: 30%;
+    border-right: 2px solid #222629;
+    background: #474b4f;
+}
+
+.nav-menu input {
+    width: 100%;
+    height: 10%;
+}
+
+#new-note {
+    background: #61892f;
+    padding-left: 15px;
+    color: white;
+    font-size: 24px;
+    text-align: left;
+    border: none;
+    cursor: pointer;
+    box-shadow: inset 5px 5px #474b4f, inset -5px -5px #474b4f;
+}
+
+.notes-section {
+    width: 70%;
+    background: #474b4f;
+    display: flex;
+    flex-direction: column;
+}
+
+.notes-section .time-section{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 10%;
+    color: #86c232;
+    font-size: 24px;
+    border-bottom: 2px solid #222629;
+}
+
+.notes-section .text-area {
+    color: white;
+    margin: 3%;
+}
