@@ -34,6 +34,9 @@ main {
 }
 
 .nav-menu {
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: column;
     width: 30%;
     border-right: 2px solid #222629;
     background: #474b4f;
@@ -41,19 +44,26 @@ main {
 
 .nav-menu input {
     width: 100%;
-    height: 10%;
+    min-height: 10%;
 }
 
 #new-note {
-    background: #61892f;
     padding-left: 15px;
     color: white;
     font-size: 24px;
     text-align: left;
     border: none;
     cursor: pointer;
+    background: #61892f;
     box-shadow: inset 5px 5px #474b4f, inset -5px -5px #474b4f;
+    transition: all 0.7s;
 }
+
+#new-note:hover {   
+   background: #86c232;
+   box-shadow: inset 2px 2px #474b4f, inset -2px -2px #474b4f;
+}
+
 
 .notes-section {
     width: 70%;
@@ -73,7 +83,29 @@ main {
     border-bottom: 2px solid #222629;
 }
 
+
+
 .notes-section .text-area {
     color: white;
     margin: 3%;
 }
+
+.note  {
+    display: flex;
+    min-height: 10%;
+    padding-left: 15px;
+    padding-right: 15px;
+    color: white;
+    font-size: 24px;
+    text-align: left;
+    border: none;
+    cursor: pointer;
+    background: #61892f;
+    box-shadow: inset 5px 5px #474b4f, inset -5px -5px #474b4f;
+    transition: all 0.7s;
+}
+
+.note:hover {   
+    background: #86c232;
+    box-shadow: inset 2px 2px #474b4f, inset -2px -2px #474b4f;
+ }
