@@ -5,14 +5,6 @@
 
 На чистом JavaScript (без npm пакетов) написать свое приложение "Заметки" (из MacOS), либо Evernote ([https://evernote.com](https://www.evernote.com)).
 
-Evernote:
-
-![https://s3-us-west-2.amazonaws.com/secure.notion-static.com/b2264c2b-01a7-428c-9755-3115e998f3e4/__2020-09-11__16.35.28.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/b2264c2b-01a7-428c-9755-3115e998f3e4/__2020-09-11__16.35.28.png)
-
-Заметки:
-
-![https://s3-us-west-2.amazonaws.com/secure.notion-static.com/9aa4defe-7bbc-4bf7-b5d3-3f87d77c23a7/__2020-09-11__16.38.19.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/9aa4defe-7bbc-4bf7-b5d3-3f87d77c23a7/__2020-09-11__16.38.19.png)
-
 Cлегка упрощаем функционал. Нам нужен только единственный блокнот. Без тегов, фильтров, будильников и т.д.
 
 1. Дизайн. Слева в хронологическом порядке столбиком располагается список ваших заметок - отображается заголовок вашей заметки, время ее создания/последнего редактирования. Справа отображается контент каждой заметки. Можно переключаться между заметками (подсвечивая ее при этом).
