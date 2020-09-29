@@ -48,6 +48,7 @@ main {
 }
 
 #new-note {
+    outline: none;
     padding-left: 15px;
     color: white;
     font-size: 24px;
@@ -78,26 +79,54 @@ main {
     align-items: center;
     justify-content: center;
     height: 10%;
-    color: #86c232;
-    font-size: 24px;
+    
+
     border-bottom: 2px solid #222629;
 }
 
+textarea {
+    resize: none;
+}
+
+#time-section {
+    height: 80%;
+    background-color: #474b4f;
+    font-size: 24px;
+    border: none;
+    color: #86c232;
+    text-align: center;
+   
+}
 
 
 .notes-section .text-area {
     color: white;
     margin: 3%;
+    height: 100%;
+
+}
+
+.notes-section #text-area-input {
+    color: white;
+    height: 100%;
+    width: 100%;
+    background-color: #474b4f;
+    border: none;
+    outline: none;
+    font-size: 32px;
+}
+
+.note-wrapper {
+    height: 10%;
 }
 
 .note  {
     display: flex;
-    min-height: 10%;
-    padding-left: 15px;
-    padding-right: 15px;
-    color: white;
-    font-size: 24px;
-    text-align: left;
+    justify-content: space-between;
+    align-items: center;
+    outline: none;
+    height: 100%;
+    padding: 0 15px;
     border: none;
     cursor: pointer;
     background: #61892f;
@@ -105,7 +134,30 @@ main {
     transition: all 0.7s;
 }
 
+.note-header {
+    overflow-wrap: break-word;
+}
+
+.note #note-header-text {
+    width: 75%;
+    margin: 0;
+    background: #61892f;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    color: white;
+    font-size: 24px;
+}
+
+.note-del-button {
+    text-align: right;
+}
+
 .note:hover {   
-    background: #86c232;
+    box-shadow: inset 2px 2px #474b4f, inset -2px -2px #474b4f;
+ }
+
+ .selected-note {
+    background: #305700;
     box-shadow: inset 2px 2px #474b4f, inset -2px -2px #474b4f;
  }

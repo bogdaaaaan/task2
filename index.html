@@ -6,9 +6,11 @@
     <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;900&display=swap" rel="stylesheet">
 </head>
-<body>
-    <script  type="text/javascript" src="script.js"></script>
 
+
+
+<body onload="parseFunction()">
+   
 
     <header>
         <div class="title">
@@ -19,20 +21,18 @@
     <main>
         <div class="nav-menu" id="nav-menu">
     
-            <input type="button" value="New note" id="new-note" onclick="addNote()">
-
+            <input type="button" value="New note" id="new-note" onclick="addNote()" onclick="unselect()">
         </div>
         <div class="notes-section">
-            <div class="time-section">bruh today nibba</div>
-            <div class="text-area">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eveniet, fugit.</div>
+            
+            <div class="time-section">
+                <textarea id="time-section" readonly></textarea>
+            </div>
+            <div class="text-area">
+                <textarea type="text"  id="text-area-input" onchange="update()"></textarea>
+            </div>
         </div>
     </main>
-
-
-
-
-    <footer>
-
-    </footer>
+    <script  type="text/javascript" src="script.js"></script>
 </body>
 </html>
