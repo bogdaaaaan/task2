@@ -41,7 +41,7 @@ function parseFunction() {
         note.setAttribute('onfocus', 'focusNote()');
         note.insertAdjacentHTML("afterbegin", ` 
             <div class="note-header" >
-                <input type="text" id="note-header-text"  oninput="update()" onchange="reloadPage()" value="`+temp_arr[0]+`" readonly="true">
+                <input type="text" id="note-header-text"  oninput="update()" value="`+temp_arr[0]+`" readonly="true">
             </div>
             <div class="note-del-button" onclick="deleteNote()">
                 X
@@ -83,7 +83,7 @@ function addNote(name = "Blank note", id = String(Math.random()).slice(2,8), tex
     
     note.insertAdjacentHTML("afterbegin", ` 
         <div class="note-header" >
-            <input type="text" id="note-header-text" onchange="reloadPage()" oninput="update()" value="`+name+`" readonly="true">
+            <input type="text" id="note-header-text" oninput="update()" value="`+name+`" readonly="true">
         </div>
         <div class="note-del-button" onclick="deleteNote()">
             X
