@@ -1,7 +1,3 @@
-// Разобраться с last_id когда теряем фокус элемента
-// При переходе к заметке непосредственно через ссылку, нужно считать ее, проверить есть ли такой id в localStorage
-// Если такого значения в хранилище нету, pushToURL('undefined') unselect(), 
-
 const pushToURL = (name, key, value) => window.history.replaceState(null, null, `${name}?${key}=${value}`)
 
 var cur_id;
@@ -12,7 +8,8 @@ if(localStorage.length > 1 ) {
 
 console.log(notes); 
 
-//cur = Number(((window.location.href).split('='))[1]);
+cur = (((window.location.href).split('='))[1]);
+localStorage.setItem('last-id', cur);
 
 var isInStorage = false;
 
