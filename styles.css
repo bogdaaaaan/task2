@@ -140,6 +140,7 @@ textarea {
 .note #note-header-text {
     background: transparent;
     margin: 0;
+    width: 50%;
     border: none;
     outline: none;
     cursor: pointer;
