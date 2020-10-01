@@ -121,7 +121,7 @@ textarea {
 
 .note  {
     display: flex;
-    height: 10%;
+    min-height: 10%;
     justify-content: space-between;
     align-items: center;
     outline: none;
