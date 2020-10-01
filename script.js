@@ -1,5 +1,8 @@
-// Сортировку сделай там по индексам в массиве, а потом чето с этим массивом делать
-// может тип по индексам репарсить с локал стореджа, я хз подумай сам
+
+// TODO: сделать рутинг, в переменной last_id хранится последний id элемента на который клинкули перед тем как рефрешнуть страницу. 
+// Идея в том, что бы использовать last_id как часть ссылки на заметку.
+// Когда пользователь переключает фокус на другую заметку, ее id записывается в переменную last_id, если last_id != null,
+// то при загрузке страницы мы переходим по ссылке содержащей last_id (но при загрузке last_id никогда не будет пустым oh shiiiieeeeeeet..)
 
 var cur_id;
 var notes = [];
@@ -8,26 +11,31 @@ if(localStorage.length != 0 ) {
 }
 console.log(notes);
 
+
+
 function parseFunction() {
     var temp_arr = [];
+    
     for (var i = 0; i < notes.length; i++) {
     
         temp_arr = JSON.parse(localStorage.getItem(notes[i]));
         console.log(temp_arr);
         
+
         let note = document.createElement('div');
-        note.className =  "note-wrapper";
-    
+        note.className =  "note";
+        note.id = notes[i];
+        note.tabIndex = "0";
+        note.setAttribute('onfocus', 'focusNote()');
         note.insertAdjacentHTML("afterbegin", ` 
-        <div class="note" id="`+notes[i]+`" tabindex="0"  onfocus="focusNote()">
             <div class="note-header" >
-                <textarea id="note-header-text"  onchange="update()">`+temp_arr[0]+`</textarea>
+                <input type="text" id="note-header-text"  oninput="update()" onchange="reloadPage()" value="`+temp_arr[0]+`" readonly="true">
             </div>
-            <div class="note-del-button">
+            <div class="note-del-button" onclick="deleteNote()">
                 X
             </div> 
-        </div>
         `);
+
         var parent = document.getElementById("nav-menu");
         var parentNode = note.parentNode;
         parent.insertBefore(note, parentNode);
@@ -36,47 +44,55 @@ function parseFunction() {
 
 function addNote(name = "Blank note", id = String(Math.random()).slice(2,8), text = '') {
     var date = new Date();
-    var time = date.getHours() + ':' + date.getMinutes() + ':' + date.getSeconds();
-    notes.push(id);
+    var time = 'Last change: Hours: ' +date.getHours() + ', Minutes: ' + date.getMinutes() + ', Seconds: ' + date.getSeconds();
+    unselect();
 
+
+    document.getElementById("text-area-input").setAttribute('readonly','true');
+    notes.splice(0,0,id);
     console.log(notes);
-
     localStorage.setItem('notes', JSON.stringify(notes));
+
 
     document.getElementById("text-area-input").value = text;
     document.getElementById("time-section").value = '';
    
     
     let note = document.createElement('div');
-    note.className =  "note-wrapper";
-      
+    note.className =  "note";
+    note.id = id;
+    note.tabIndex = "0";
+    note.setAttribute('onfocus', 'focusNote()');
+    
     note.insertAdjacentHTML("afterbegin", ` 
-    <div class="note" id="`+id+`" tabindex="0"  onfocus="focusNote()">
         <div class="note-header" >
-            <textarea id="note-header-text"  onchange="update()">`+name+`</textarea>
+            <input type="text" id="note-header-text" onchange="reloadPage()" oninput="update()" value="`+name+`" readonly="true">
         </div>
-        <div class="note-del-button">
+        <div class="note-del-button" onclick="deleteNote()">
             X
         </div> 
-    </div>
     `);
     
     var parent = document.getElementById("nav-menu");
     var parentNode = note.parentNode;
     parent.insertBefore(note, parentNode);
 
-
-
-
     localStorage.setItem(id, JSON.stringify([name,'',time]));
+    document.location.reload();
 }
 
 function focusNote() {
+    
     unselect();
-
     cur_id = document.activeElement.id;
-    document.getElementById(cur_id).classList.add('selected-note');
 
+    localStorage.setItem('last-id', cur_id);
+
+    document.getElementById(cur_id).classList.add('selected-note');
+    document.getElementById(cur_id).querySelector('div.note-header input[id=note-header-text]').value = name;
+    document.getElementById(cur_id).querySelector('div.note-header input[id=note-header-text]').removeAttribute('readonly');
+    document.getElementById("text-area-input").removeAttribute('readonly');
+    
     document.getElementById("text-area-input").value = '';
     document.getElementById("time-section").innerHTML = '';
     
@@ -87,15 +103,15 @@ function focusNote() {
     var time = info[2];
     
 
-    document.getElementById(cur_id).querySelector('div.note-header textarea[id=note-header-text]').value = name;
+    document.getElementById(cur_id).querySelector('div.note-header input[id=note-header-text]').value = name;
     document.getElementById("text-area-input").value = text;
     document.getElementById("time-section").value = time;
 }
 
 function update() {
     var date = new Date();
-    var time = date.getHours() + ':' + date.getMinutes() + ':' + date.getSeconds();
-    var name = document.getElementById(cur_id).querySelector('div.note-header textarea[id=note-header-text]').value;
+    var time = 'Last change: Hours: ' +date.getHours() + ', Minutes: ' + date.getMinutes() + ', Seconds: ' + date.getSeconds();
+    var name = document.getElementById(cur_id).querySelector('div.note-header input[id=note-header-text]').value;
 
   
 
@@ -104,12 +120,15 @@ function update() {
     document.getElementById('time-section').value = time;    
     localStorage.setItem(cur_id,JSON.stringify([name,content,time] ));
 
-    
-    var temp_indx = notes.indexOf(cur_id);
-    notes.splice(temp_indx, 1)
-    notes.splice(0, 0, cur_id)
-    console.log(notes);
-    
+    if (cur_id == Number(notes[0])) {
+
+    } else {
+        var temp_indx = notes.indexOf(cur_id);
+        notes.splice(temp_indx, 1)
+        notes.splice(0, 0, cur_id)
+        console.log(notes);
+        localStorage.setItem('notes', JSON.stringify(notes));
+    }   
 }
 
 function unselect() {
@@ -117,4 +136,16 @@ function unselect() {
         return;
     }
     document.getElementById(cur_id).classList.remove('selected-note');
+}
+
+function deleteNote() {
+    var temp_indx = notes.indexOf(cur_id);
+    notes.splice(temp_indx, 1);
+    localStorage.setItem('notes',  JSON.stringify(notes));
+    localStorage.removeItem(cur_id);
+    document.location.reload();
+}
+
+function reloadPage() {
+    document.location.reload();
 }

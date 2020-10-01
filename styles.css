@@ -74,28 +74,30 @@ main {
 }
 
 .notes-section .time-section{
+   
     width: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 10%;
-    
-
+    min-height: 10%;
+    line-height: 100%;
     border-bottom: 2px solid #222629;
 }
 
 textarea {
+    outline: none;
     resize: none;
 }
+
 
 #time-section {
     height: 80%;
     background-color: #474b4f;
     font-size: 24px;
+    width: 50%;
     border: none;
     color: #86c232;
     text-align: center;
-   
 }
 
 
@@ -116,16 +118,13 @@ textarea {
     font-size: 32px;
 }
 
-.note-wrapper {
-    height: 10%;
-}
 
 .note  {
     display: flex;
+    height: 10%;
     justify-content: space-between;
     align-items: center;
     outline: none;
-    height: 100%;
     padding: 0 15px;
     border: none;
     cursor: pointer;
@@ -139,9 +138,8 @@ textarea {
 }
 
 .note #note-header-text {
-    width: 75%;
+    background: transparent;
     margin: 0;
-    background: #61892f;
     border: none;
     outline: none;
     cursor: pointer;
@@ -151,9 +149,15 @@ textarea {
 
 .note-del-button {
     text-align: right;
+    background: red;
+    font-weight: bold;
+    padding: 1%;
+    border: 1px solid black;
+    border-radius: 15%;
 }
 
 .note:hover {   
+    background: #567a2a;
     box-shadow: inset 2px 2px #474b4f, inset -2px -2px #474b4f;
  }
 

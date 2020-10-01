@@ -20,18 +20,19 @@
 
     <main>
         <div class="nav-menu" id="nav-menu">
-    
             <input type="button" value="New note" id="new-note" onclick="addNote()" onclick="unselect()">
         </div>
+
         <div class="notes-section">
-            
             <div class="time-section">
                 <textarea id="time-section" readonly></textarea>
             </div>
+
             <div class="text-area">
-                <textarea type="text"  id="text-area-input" onchange="update()"></textarea>
+                <textarea type="text"  id="text-area-input" oninput="update()" readonly onchange="reloadPage()"></textarea>
             </div>
         </div>
+
     </main>
     <script  type="text/javascript" src="script.js"></script>
 </body>
