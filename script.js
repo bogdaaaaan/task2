@@ -60,7 +60,17 @@ function parseFunction() {
 function addNote(name = "Blank note", id = String(Math.random()).slice(2,8)) {
     // writing down the time
     var date = new Date();
-    var time = 'Last change: Hours: ' +date.getHours() + ', Minutes: ' + date.getMinutes() + ', Seconds: ' + date.getSeconds();
+    var options = {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric',
+        weekday: 'long',
+        timezone: 'UTC',
+        hour: 'numeric',
+        minute: 'numeric',
+        second: 'numeric'
+    };
+    var time = date.toLocaleString("ru", options);
 
     // unfocus last note and disable editing
     unselect();
@@ -133,7 +143,17 @@ function focusNote(cur) {
 function update() {
     var date = new Date();
     // name, content and time of note
-    var time = 'Last change: Hours: ' +date.getHours() + ', Minutes: ' + date.getMinutes() + ', Seconds: ' + date.getSeconds();
+    var options = {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric',
+        weekday: 'long',
+        timezone: 'UTC',
+        hour: 'numeric',
+        minute: 'numeric',
+        second: 'numeric'
+    };
+    var time = date.toLocaleString("ru", options);
     var name = document.getElementById(cur_id).querySelector('div.note-header input[id=note-header-text]').value;
     var content = document.getElementById('text-area-input').value;
     document.getElementById('time-section').value = time;    
